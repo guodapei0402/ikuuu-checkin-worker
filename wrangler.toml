@@ -1,0 +1,26 @@
+name = "ikuuu-checkin"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# KV 命名空间绑定
+# 先在 Cloudflare Dashboard 创建 KV 命名空间，然后填入 id
+# 或使用 wrangler kv:namespace create "IKUUU_KV"
+[[kv_namespaces]]
+binding = "IKUUU_KV"
+id = ""  # 替换为你的 KV 命名空间 ID
+
+# 定时触发（每分钟检测，到设定时间自动签到）
+[triggers]
+crons = ["* * * * *"]
+
+# 环境变量（敏感信息建议用 wrangler secret put 命令设置）
+# [vars]
+# TIME_ZONE = "Asia/Shanghai"
+# BASE_URL = ""  # 留空则自动探测
+
+# 敏感变量请用命令行设置：
+# wrangler secret put TELEGRAM_BOT_TOKEN
+# wrangler secret put TELEGRAM_CHAT_ID
+# wrangler secret put ENCRYPTION_SECRET
+# wrangler secret put RUN_TOKEN
+# wrangler secret put ADMIN_ID
